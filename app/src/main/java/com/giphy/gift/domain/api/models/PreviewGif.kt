@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 class PreviewGif (
     @SerializedName("height")
-    private var  height:String,
+    var  height:String,
 
     @SerializedName("width")
-    private var width:String,
+    var width:String,
 
     @SerializedName("url")
-    private var url:String
+    var url:String
 )

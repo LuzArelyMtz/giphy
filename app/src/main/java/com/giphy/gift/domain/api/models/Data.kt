@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Data (
     @SerializedName("rating")
-    private var  rating:String,
+    var  rating:String,
 
     @SerializedName("images")
-    private var  images:Images,
+    var  images:Images,
 
     @SerializedName("user")
-    private var  user:User
+    var  user:User
 )
