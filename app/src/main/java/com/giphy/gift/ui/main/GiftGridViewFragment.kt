@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.giphy.gift.R
@@ -37,7 +38,7 @@ class GiftGridViewFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val gridGifts: RecyclerView = requireActivity().findViewById(R.id.gridGifts)
-        gridGifts?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        gridGifts?.layoutManager = GridLayoutManager(requireActivity(),2)
 
 
 
@@ -50,10 +51,10 @@ class GiftGridViewFragment : Fragment() {
             }
 
             override fun onResponse(call: Call<ResponseGiphy>, response: Response<ResponseGiphy>) {
-                Log.d("Giphy",response.body().toString()!!)
+                Log.d("Giphy",response.body().toString())
 
-                var responseBody=response.body().toString()!!
-                var giftDataList=response.body()!!.giftList
+                var responseBody=response.body().toString()
+                var giftDataList=response.body()?.giftList?: ArrayList()
 
                 val gridAdapter = GiftGridAdapter(giftDataList)
                 gridGifts.adapter = gridAdapter

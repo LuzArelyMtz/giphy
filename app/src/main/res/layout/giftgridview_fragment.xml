@@ -5,15 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".ui.main.GiftGridViewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gridGifts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="6dp"
-        android:numColumns="2"
-        android:verticalSpacing="6dp" />
+
+        android:numColumns="2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
