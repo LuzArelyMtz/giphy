@@ -8,17 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.giphy.gift.R
 import com.giphy.gift.domain.api.GiphyAPIImpl
 import com.giphy.gift.domain.api.IGiphyAPI
-import com.giphy.gift.domain.api.models.Data
 import com.giphy.gift.domain.api.models.ResponseGiphy
 import com.giphy.gift.ui.adapter.GiftGridAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.android.synthetic.main.giftgridview_fragment.*
 
 class GiftGridViewFragment : Fragment() {
 
@@ -27,20 +25,24 @@ class GiftGridViewFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private val gridAdapter by lazy { GiftGridAdapter() }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.giftgridview_fragment, container, false)
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val gridGifts: RecyclerView = requireActivity().findViewById(R.id.gridGifts)
-        gridGifts?.layoutManager = GridLayoutManager(requireActivity(),2)
+        //val gridGifts: RecyclerView = requireActivity().findViewById(R.id.gridGifts)
 
 
+        initGridAdapter()
 
 
         val giphyService:IGiphyAPI=GiphyAPIImpl().provideRetrofit().create(IGiphyAPI::class.java)
@@ -53,11 +55,9 @@ class GiftGridViewFragment : Fragment() {
             override fun onResponse(call: Call<ResponseGiphy>, response: Response<ResponseGiphy>) {
                 Log.d("Giphy",response.body().toString())
 
-                var responseBody=response.body().toString()
-                var giftDataList=response.body()?.giftList?: ArrayList()
-
-                val gridAdapter = GiftGridAdapter(giftDataList)
-                gridGifts.adapter = gridAdapter
+                var responseBody         =response.body().toString()
+                //var giftDataList=response.body()?.giftList?: ArrayList()
+                gridAdapter.submitList(response.body()?.giftList)
 
 
             }
@@ -69,6 +69,11 @@ class GiftGridViewFragment : Fragment() {
 
 
         // TODO: Use the ViewModel
+    }
+
+    private fun initGridAdapter() {
+        rvGridGifts?.layoutManager = GridLayoutManager(requireActivity(),2)
+        rvGridGifts.adapter = gridAdapter
     }
 
 }

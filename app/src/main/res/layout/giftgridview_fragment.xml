@@ -9,11 +9,13 @@
     tools:context=".ui.main.GiftGridViewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gridGifts"
+        android:id="@+id/rvGridGifts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:numColumns="2" />
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/gift_grid_item"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
