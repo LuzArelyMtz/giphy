@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface IGiphyAPI {
     @GET("trending")
-    fun getResponse(@Query("api_key") term: String="dc6zaTOxFJmzC"): Call<ResponseGiphy>
+    fun getResponse(@Query("api_key") term: String = "dc6zaTOxFJmzC"): Call<ResponseGiphy>
 }

@@ -1,18 +1,22 @@
 package com.giphy.gift
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import com.giphy.gift.ui.main.DetailGifFragment
 import com.giphy.gift.ui.main.GiftGridViewFragment
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, GiftGridViewFragment.newInstance())
-                    .commitNow()
+                .add(R.id.container, GiftGridViewFragment.newInstance())
+                .commitNow()
         }
     }
 }

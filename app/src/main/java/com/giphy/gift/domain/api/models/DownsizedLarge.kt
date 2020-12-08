@@ -2,14 +2,14 @@ package com.giphy.gift.domain.api.models
 
 import com.google.gson.annotations.SerializedName
 
-data class DownsizedLarge (
+data class DownsizedLarge(
     @SerializedName("height")
-    var  height:String,
+    var height: String,
 
     @SerializedName("width")
-    var width:String,
+    var width: String,
 
 
     @SerializedName("url")
-    var url:String
+    var url: String
 )

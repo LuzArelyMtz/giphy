@@ -4,8 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class GiphyAPIImpl {
-    val URLBASE:String="https://api.giphy.com/v1/gifs/"
-
+    val URLBASE: String = "https://api.giphy.com/v1/gifs/"
 
 
     fun provideRetrofit(): Retrofit {
@@ -15,7 +14,7 @@ class GiphyAPIImpl {
             .build()
     }
 
-    fun provideUserService():IGiphyAPI{
+    fun provideUserService(): IGiphyAPI {
         return provideRetrofit().create(IGiphyAPI::class.java)
     }
 }
